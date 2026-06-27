@@ -9,12 +9,18 @@ ASSETS = ROOT / "docs" / "assets"
 OUT = ASSETS / "caseproof_demo_rough_cut.mp4"
 
 SLIDES = [
-    ("CaseProof AI", "A human-review gate for high-value refund exception cases."),
-    ("Problem", "An agent can prepare a case, but preparation is not approval."),
-    ("HOLD", "Missing refund evidence means the packet is not review-ready."),
-    ("REVIEW ONLY", "A complete packet can open a human review task."),
-    ("BLOCK", "Refund cap bypass and skipped milestones are stopped."),
-    ("Boundary", "No refund is issued. No case is closed. Synthetic demo only."),
+    ("CaseProof AI", "A human-review gate for high-value refund exception cases in UiPath Maestro."),
+    ("The Problem", "An agent can prepare a refund case. Preparation is not approval."),
+    ("Maestro Case Flow", "Intake -> Evidence -> Policy -> Risk -> Recommendation -> Human Review."),
+    ("Required Evidence", "Order record, delivery proof, customer statement, policy snapshot, and rationale."),
+    ("CaseProof Gate", "Studio Web or an API Workflow calls the validator before review."),
+    ("Scenario 1: HOLD", "Customer statement is missing. The packet is not review-ready."),
+    ("Scenario 2: REVIEW", "The packet is complete. The only allowed action is human review."),
+    ("Scenario 3: BLOCK", "The agent tries to issue a refund above the auto-action cap."),
+    ("Scenario 4: BLOCK", "Policy check and risk review milestones are missing."),
+    ("What Runs", "python -m caseproof.cli fixtures/allow_review_refund_case.json --pretty"),
+    ("What It Does Not Do", "It does not issue refunds, close cases, or update customer records."),
+    ("Claim Boundary", "Synthetic public-safe prototype. Real Maestro binding is the next step."),
 ]
 
 
@@ -53,7 +59,7 @@ def main() -> int:
 
     list_file = ASSETS / "caseproof_video_frames.txt"
     list_file.write_text(
-        "".join(f"file '{frame.as_posix()}'\nduration 6\n" for frame in frames) + f"file '{frames[-1].as_posix()}'\n",
+        "".join(f"file '{frame.as_posix()}'\nduration 8\n" for frame in frames) + f"file '{frames[-1].as_posix()}'\n",
         encoding="utf-8",
     )
     ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
