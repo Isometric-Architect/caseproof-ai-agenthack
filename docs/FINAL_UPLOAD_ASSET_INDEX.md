@@ -27,7 +27,7 @@ C:\Users\Isometric-Architect\Desktop\Q_RESEARC_챗지피티보조\CASEPROOF_AI_A
 Caption:
 
 ```text
-CaseProof AI dashboard showing HOLD, human-review-only, and BLOCK outcomes for UiPath Maestro case packets.
+CaseProof AI dashboard showing HOLD, human-review-only, and BLOCK outcomes for high-value refund exception packets.
 ```
 
 ## Video rough cut
@@ -47,4 +47,3 @@ C:\Users\Isometric-Architect\Desktop\Q_RESEARC_챗지피티보조\CASEPROOF_AI_A
 ```text
 C:\Users\Isometric-Architect\Desktop\Q_RESEARC_챗지피티보조\CASEPROOF_AI_AGENTHACK_PUBLIC_REPO\docs\FINAL_DEVPOST_FIELDS.md
 ```
-

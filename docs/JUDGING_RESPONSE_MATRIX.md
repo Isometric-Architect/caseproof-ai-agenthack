@@ -2,7 +2,7 @@
 
 ## What problem does it solve?
 
-It keeps agent-handled cases from moving to approval when evidence, policy, or process history is incomplete.
+It keeps AI-prepared refund exception cases from moving to review when evidence, policy, or process history is incomplete.
 
 ## How does it use UiPath?
 
@@ -19,4 +19,3 @@ External action is disabled. The highest allowed result is human review.
 ## What is not claimed?
 
 Production approval, legal compliance, security certification, and field validation are not claimed.
-

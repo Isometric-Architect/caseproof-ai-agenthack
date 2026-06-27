@@ -1,12 +1,12 @@
 # CaseProof AI
 
-Human-review governor for AI-handled enterprise cases in UiPath Maestro.
+Human-review governor for high-value refund exception cases in UiPath Maestro.
 
 ## What It Does
 
-CaseProof AI checks whether an AI-handled business case is safe to send to human approval. It looks for missing evidence, skipped process stages, policy bypasses, unsafe auto-action, and public-safety redaction gaps.
+CaseProof AI checks whether an AI-prepared refund exception case is ready for a person. It looks for missing evidence, missing case milestones, policy bypasses, unsafe auto-action, and public-safety redaction gaps.
 
-CaseProof does not approve refunds, settle claims, change customer records, or certify production readiness. Its strongest action is:
+CaseProof does not issue refunds, settle claims, change customer records, close cases, or certify production readiness. Its strongest action is:
 
 ```text
 ALLOW_HUMAN_REVIEW_ONLY
@@ -17,14 +17,14 @@ ALLOW_HUMAN_REVIEW_ONLY
 - Hackathon: UiPath AgentHack 2026
 - Track: UiPath Maestro Case
 - Project name: CaseProof AI
-- Agent type: case-governance validator for agent-handled work
+- Agent type: case-governance validator for AI-prepared refund exception work
 - UiPath components: UiPath Automation Cloud, UiPath Maestro, Studio Web/API Workflow handoff, optional Apps/Action Center style human review
 
 The public repository contains a runnable clean-room prototype and synthetic demo packets. Real customer data, real tenant reports, private verifier internals, thresholds, seeds, and ranking weights are intentionally not included.
 
 ## Why It Matters
 
-Enterprise agents can collect evidence, recommend decisions, and route cases. But an agentic case can look complete while it has skipped a policy check, reused evidence from the wrong case, or made a high-risk decision without approval. CaseProof adds a small governance gate before any action is treated as review-ready.
+Enterprise agents can collect refund evidence, prepare a recommendation, and route a case. But a prepared case is not an approved case. It can still be missing a customer statement, skip policy review, reuse evidence from the wrong case, or route a high-value refund too early. CaseProof adds a small gate before the case is treated as review-ready.
 
 CaseProof checks:
 
@@ -32,7 +32,7 @@ CaseProof checks:
 - case subject binding
 - policy and amount caps
 - mandatory human review routing
-- stage-order continuity
+- required milestone presence
 - unsafe auto-action disablement
 - public-safe redaction status
 
@@ -104,7 +104,7 @@ docs/CaseProof_AI_AgentHack_Deck_Draft.pptx
 
 ## Claim Ceiling
 
-This is a public-safe hackathon prototype over synthetic case packets. It is not production approval, legal compliance certification, financial authorization, security certification, or field validation. A real UiPath Maestro tenant run must bind a real case URL, process instance, evidence references, and human-review action before any product or field claim is made.
+This is a public-safe hackathon prototype over synthetic high-value refund exception packets. It is not production approval, legal compliance certification, financial authorization, security certification, or field validation. A real UiPath Maestro tenant run must bind a real case URL, process instance, evidence references, and human-review action before any product or field claim is made.
 
 ## Repository Safety Boundary
 
@@ -124,4 +124,3 @@ This public repository must not include:
 - hidden thresholds or ranking weights
 - private verifier internals
 - production approval keys
-

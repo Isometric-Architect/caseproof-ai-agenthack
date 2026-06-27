@@ -38,7 +38,7 @@ def test_block_policy_bypass() -> None:
 def test_block_stage_skip() -> None:
     receipt = validate_packet(load_fixture("block_stage_skip.json"))
     assert receipt["decision"] == BLOCK
-    assert any(f["code"] == "stage_order_invalid" for f in receipt["findings"])
+    assert any(f["code"] == "required_milestone_missing" for f in receipt["findings"])
 
 
 def test_subject_mismatch_blocks() -> None:
@@ -47,4 +47,3 @@ def test_subject_mismatch_blocks() -> None:
     receipt = validate_packet(packet)
     assert receipt["decision"] == BLOCK
     assert any(f["code"] == "case_subject_mismatch" for f in receipt["findings"])
-

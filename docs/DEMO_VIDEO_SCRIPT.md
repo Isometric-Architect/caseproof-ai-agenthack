@@ -2,15 +2,15 @@
 
 ## 0:00
 
-CaseProof AI is a human-review gate for UiPath Maestro cases.
+CaseProof AI is a human-review gate for high-value refund exception cases in UiPath Maestro.
 
 ## 0:20
 
-The problem is simple. An agent can prepare a case, but the case may still be unsafe to approve.
+The problem is simple. An agent can prepare a refund case, but the case may still be unsafe to approve.
 
 ## 0:45
 
-CaseProof reads a public-safe case packet. It checks evidence, policy, stage order, and review routing.
+CaseProof reads a public-safe case packet. It checks evidence, policy, required milestones, and review routing.
 
 ## 1:20
 
@@ -26,9 +26,8 @@ Third case: the agent tries to bypass policy and auto-approve a high-value refun
 
 ## 3:05
 
-Fourth case: required Maestro stages were skipped. CaseProof blocks it.
+Fourth case: required Maestro milestones were skipped. CaseProof blocks it.
 
 ## 3:40
 
-The boundary is important. CaseProof does not approve a case. It only helps decide whether a person can review it.
-
+The boundary is important. CaseProof does not issue a refund, close a case, or approve anything. It only helps decide whether a person can review the packet.

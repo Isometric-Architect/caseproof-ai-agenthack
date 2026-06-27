@@ -13,10 +13,10 @@ from caseproof.validator import validate_packet  # noqa: E402
 
 
 SCENARIOS = [
-    ("hold_missing_evidence.json", "Missing evidence"),
-    ("allow_review_refund_case.json", "Ready for human review"),
-    ("block_policy_bypass.json", "Policy bypass"),
-    ("block_stage_skip.json", "Skipped Maestro stage"),
+    ("hold_missing_evidence.json", "Missing refund evidence"),
+    ("allow_review_refund_case.json", "Complete review packet"),
+    ("block_policy_bypass.json", "Refund cap bypass"),
+    ("block_stage_skip.json", "Skipped review milestone"),
 ]
 
 
@@ -32,4 +32,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

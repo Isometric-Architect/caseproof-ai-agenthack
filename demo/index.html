@@ -58,41 +58,41 @@
 <body>
   <header>
     <h1>CaseProof AI</h1>
-    <p class="lead">A small gate for Maestro cases. It asks whether an agent-handled case has enough evidence, policy fit, and stage history to be sent to a person.</p>
+    <p class="lead">A small gate for high-value refund exception cases in Maestro. It asks whether the packet is ready for a person.</p>
   </header>
   <main>
     <div class="grid">
 
       <section class="card hold">
         <p class="eyebrow">Scenario 1: HOLD</p>
-        <h2>Evidence is missing</h2>
-        <p>The case may be valid, but it is not review-ready.</p>
+        <h2>Customer statement is missing</h2>
+        <p>A high-value refund case may be valid, but it is not review-ready.</p>
         <div class="decision">HOLD</div>
-        <ul><li><code>required_evidence_missing</code> Required evidence kind is missing: customer_statement</li><li><code>required_evidence_missing</code> Required evidence kind is missing: agent_rationale</li><li><code>rationale_ref_missing</code> Decision rationale ref is not in evidence packet: EV-rationale</li></ul>
+        <ul><li><code>required_evidence_missing</code> Required evidence kind is missing: customer_statement</li><li><code>required_evidence_missing</code> Required evidence kind is missing: delivery_proof</li><li><code>required_evidence_missing</code> Required evidence kind is missing: agent_rationale</li><li><code>rationale_ref_missing</code> Decision rationale ref is not in evidence packet: EV-rationale</li></ul>
       </section>
             
       <section class="card allow">
         <p class="eyebrow">Scenario 2: REVIEW</p>
-        <h2>Ready for a person</h2>
-        <p>The agent can open a human review task. It cannot approve the case.</p>
+        <h2>Complete packet for review</h2>
+        <p>The agent can open a human review task. It cannot issue the refund.</p>
         <div class="decision">ALLOW_HUMAN_REVIEW_ONLY</div>
         <ul><li>No blocking findings. Human review remains required.</li></ul>
       </section>
             
       <section class="card block">
         <p class="eyebrow">Scenario 3: BLOCK</p>
-        <h2>Policy is bypassed</h2>
-        <p>The agent tries to auto-approve a case that requires review.</p>
+        <h2>Refund cap is bypassed</h2>
+        <p>The agent tries to issue a refund above the auto-action cap.</p>
         <div class="decision">BLOCK</div>
         <ul><li><code>external_action_enabled</code> External business action is enabled before human approval</li><li><code>amount_requires_human_review</code> Amount exceeds auto-action cap without human review route</li><li><code>human_review_route_missing</code> Policy requires human review for this amount</li><li><code>blocked_override_reason</code> Decision uses a blocked policy override reason</li></ul>
       </section>
             
       <section class="card block">
         <p class="eyebrow">Scenario 4: BLOCK</p>
-        <h2>A Maestro stage was skipped</h2>
-        <p>The case jumped from evidence collection to recommendation.</p>
+        <h2>Required review milestone skipped</h2>
+        <p>The case reaches recommendation without policy or risk review.</p>
         <div class="decision">BLOCK</div>
-        <ul><li><code>stage_order_invalid</code> Required Maestro case stages are missing or out of order</li></ul>
+        <ul><li><code>required_milestone_missing</code> Required Maestro case milestone is missing: policy_check, risk_review</li></ul>
       </section>
             
     </div>

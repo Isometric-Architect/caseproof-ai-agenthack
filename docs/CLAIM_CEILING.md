@@ -22,10 +22,9 @@ CaseProof AI can demonstrate, on synthetic packets, how a Maestro case can be he
 Blocked claim:
 
 ```text
-CaseProof AI is ready to approve real business cases.
+CaseProof AI is ready to approve real refund cases.
 ```
 
 Next validation:
 
 Bind the same packet shape to a real UiPath Maestro case URL, process instance, evidence references, and human review task.
-

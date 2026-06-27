@@ -4,19 +4,19 @@
 
 CaseProof AI
 
-A human-review gate for AI-handled UiPath Maestro cases.
+A human-review gate for high-value refund exception cases in UiPath Maestro.
 
 ## Slide 2
 
 Problem
 
-An agent can prepare a case that looks complete while evidence, policy, or review routing is wrong.
+An agent can prepare a refund case that looks complete while evidence, policy, or review routing is wrong.
 
 ## Slide 3
 
 Validator
 
-CaseProof checks evidence, case identity, Maestro stage order, policy caps, and review route.
+CaseProof checks evidence, case identity, required Maestro milestones, policy caps, and review route.
 
 ## Slide 4
 
@@ -39,4 +39,3 @@ Maestro remains the orchestration layer. The validator is a small gate in the ca
 Boundary
 
 Synthetic demo only. No production approval or compliance claim.
-

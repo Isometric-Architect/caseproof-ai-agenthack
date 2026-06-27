@@ -4,9 +4,9 @@
     "case_id": "CP-DEMO-002",
     "case_type": "refund_exception",
     "region": "APAC",
-    "amount_usd": 300,
+    "amount_usd": 1250,
     "requested_action": "approve_refund",
-    "risk_tier": "low"
+    "risk_tier": "high_value_refund_exception"
   },
   "maestro": {
     "orchestration_layer": "UiPath Maestro",
@@ -47,6 +47,7 @@
       "approve_refund": [
         "order_record",
         "customer_statement",
+        "delivery_proof",
         "policy_snapshot",
         "agent_rationale"
       ]
@@ -56,7 +57,7 @@
   "decision": {
     "case_id": "CP-DEMO-002",
     "agent_recommendation": "approve_refund",
-    "amount_usd": 300,
+    "amount_usd": 1250,
     "confidence": 0.72,
     "rationale_refs": ["EV-rationale"],
     "approval_route": "human_review",
@@ -68,4 +69,3 @@
     "pii_redacted": true
   }
 }
-

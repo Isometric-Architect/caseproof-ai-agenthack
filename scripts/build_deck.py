@@ -52,10 +52,10 @@ def main() -> int:
     slides = [
         (
             "CaseProof AI",
-            "A human-review gate for AI-handled UiPath Maestro cases.",
+            "A human-review gate for high-value refund exception cases.",
             [
-                "Agents can prepare cases, but they should not silently approve risky cases.",
-                "CaseProof checks evidence, policy, stage order, and review routing.",
+                "Agents can prepare refund cases, but preparation is not approval.",
+                "CaseProof checks evidence, policy, required milestones, and review routing.",
                 "The only allowed outcome is a human review task.",
             ],
         ),
@@ -63,9 +63,9 @@ def main() -> int:
             "Problem",
             None,
             [
-                "A case can look complete while key evidence is missing.",
-                "An agent can skip a policy step or reuse the wrong rationale.",
-                "A high-value action can be routed as if it were low risk.",
+                "A refund case can look complete while delivery proof or a customer statement is missing.",
+                "An agent can skip policy or risk review.",
+                "A high-value refund can be routed as if it were low risk.",
             ],
         ),
         (
@@ -74,7 +74,7 @@ def main() -> int:
             [
                 "Required evidence is present and referenced.",
                 "The decision belongs to the same case.",
-                "Maestro stages appear in the required order.",
+                "Required Maestro case milestones are present.",
                 "Policy caps route risky cases to human review.",
             ],
         ),
@@ -82,9 +82,9 @@ def main() -> int:
             "Demo Outcomes",
             None,
             [
-                "HOLD: evidence is missing.",
+                "HOLD: refund evidence is missing.",
                 "ALLOW_HUMAN_REVIEW_ONLY: ready for a person.",
-                "BLOCK: policy bypass or skipped stage.",
+                "BLOCK: policy bypass or skipped milestone.",
                 "Auto-approval remains disabled.",
             ],
         ),
@@ -126,4 +126,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

@@ -9,12 +9,12 @@ ASSETS = ROOT / "docs" / "assets"
 OUT = ASSETS / "caseproof_demo_rough_cut.mp4"
 
 SLIDES = [
-    ("CaseProof AI", "A human-review gate for Maestro cases."),
-    ("Problem", "Agent-handled cases can skip evidence, policy, or review."),
-    ("HOLD", "Missing evidence means the case is not review-ready."),
-    ("REVIEW ONLY", "A clean case can open a human review task."),
-    ("BLOCK", "Policy bypass and skipped stages are stopped."),
-    ("Boundary", "No auto-approval. No external action. Synthetic demo only."),
+    ("CaseProof AI", "A human-review gate for high-value refund exception cases."),
+    ("Problem", "An agent can prepare a case, but preparation is not approval."),
+    ("HOLD", "Missing refund evidence means the packet is not review-ready."),
+    ("REVIEW ONLY", "A complete packet can open a human review task."),
+    ("BLOCK", "Refund cap bypass and skipped milestones are stopped."),
+    ("Boundary", "No refund is issued. No case is closed. Synthetic demo only."),
 ]
 
 

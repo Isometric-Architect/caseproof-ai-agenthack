@@ -6,35 +6,37 @@ CaseProof AI
 
 ## Elevator pitch
 
-A UiPath Maestro case gate that checks evidence, policy, and stage order before an AI-handled case reaches human review.
+A UiPath Maestro case gate that checks evidence, policy, and required milestones before an AI-prepared refund case reaches human review.
 
 ## What are you hoping to get out of this hackathon?
 
-I want to test a practical governance pattern for agent-handled enterprise cases in UiPath Maestro.
+I want to test a practical governance pattern for AI-prepared refund exception cases in UiPath Maestro.
 
 ## About the project
 
 ```markdown
 ## Inspiration
-AI agents can prepare business cases, but a case can look complete while evidence is missing, policy was skipped, or a risky decision was routed too quickly. CaseProof AI was built to keep that work reviewable.
+AI agents can prepare business cases quickly. But a prepared case is not the same as an approved case. In refund, claim, onboarding, or exception workflows, a packet may still be missing evidence, skip a policy check, or route a risky action too early.
 
 ## What it does
-CaseProof AI checks an AI-handled UiPath Maestro case before it reaches human review. It verifies evidence, case identity, policy caps, required stages, and review routing. It returns HOLD, BLOCK, or ALLOW_HUMAN_REVIEW_ONLY.
+CaseProof AI is a review gate for AI-prepared UiPath Maestro cases. It checks whether a case packet has the required evidence, the same case identity, required milestones, policy limits, a human review route, and no enabled external business action.
+
+It returns HOLD, BLOCK, or ALLOW_HUMAN_REVIEW_ONLY. It never approves the case.
 
 ## How we built it
-The prototype uses synthetic Maestro case packets, a small Python validator, local receipts, tests, a demo dashboard, and a submission audit. The validator never approves a case. It can only open the path to human review.
+We built a public-safe prototype with synthetic Maestro-shaped refund case packets, a Python validator, local receipts, tests, a demo dashboard, and a submission audit. The intended UiPath flow is: Maestro orchestrates the case, an agent prepares a recommendation, Studio Web or an API Workflow calls CaseProof, and only a human review task may be opened.
 
 ## Challenges we ran into
-The main challenge was drawing a clean line between useful agent work and unsafe action. A case can be well prepared, but still not safe to approve. CaseProof keeps that distinction explicit.
+The hard part was keeping the boundary clear. Agents can help prepare work, but they should not silently turn preparation into approval. CaseProof keeps the approval step separate.
 
 ## Accomplishments that we're proud of
-We built a public-safe prototype that catches missing evidence, policy bypasses, skipped case stages, and unsafe external action. It also keeps the claim boundary clear.
+The prototype catches missing evidence, case identity mismatch, policy bypass, skipped required milestones, unsafe external action, and public-safety redaction issues. The strongest allowed result is human review only.
 
 ## What we learned
-Agentic case work needs a small proof step before approval. The useful question is not only "what did the agent decide?" but "what evidence and process path support that decision?"
+The useful question is not only "what did the agent recommend?" It is also "what evidence, policy path, and review route support that recommendation?"
 
 ## What's next for CaseProof AI
-Next we would bind this packet shape to a real UiPath Maestro case, a Studio Web or API Workflow call, and a human review task.
+Next, we would bind the packet to a real UiPath Maestro case instance, call the validator through Studio Web or an API Workflow, and attach the receipt to a human review task.
 ```
 
 ## Built with
@@ -114,6 +116,5 @@ It helped me turn an agentic case workflow into a clearer evidence and review pa
 ## Image caption
 
 ```text
-CaseProof AI dashboard showing HOLD, human-review-only, and BLOCK outcomes for UiPath Maestro case packets.
+CaseProof AI dashboard showing HOLD, human-review-only, and BLOCK outcomes for high-value refund exception packets.
 ```
-

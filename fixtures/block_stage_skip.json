@@ -6,7 +6,7 @@
     "region": "APAC",
     "amount_usd": 900,
     "requested_action": "approve_refund",
-    "risk_tier": "medium"
+    "risk_tier": "high_value_refund_exception"
   },
   "maestro": {
     "orchestration_layer": "UiPath Maestro",
@@ -30,6 +30,13 @@
       "id": "EV-statement",
       "kind": "customer_statement",
       "digest": "sha256:synthetic-customer-statement",
+      "present": true,
+      "redacted": true
+    },
+    {
+      "id": "EV-delivery",
+      "kind": "delivery_proof",
+      "digest": "sha256:synthetic-delivery-proof",
       "present": true,
       "redacted": true
     },
@@ -59,6 +66,7 @@
       "approve_refund": [
         "order_record",
         "customer_statement",
+        "delivery_proof",
         "policy_snapshot",
         "agent_rationale"
       ]
@@ -80,4 +88,3 @@
     "pii_redacted": true
   }
 }
-

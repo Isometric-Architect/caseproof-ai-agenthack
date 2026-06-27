@@ -22,26 +22,26 @@ SCENARIOS = [
     {
         "fixture": "hold_missing_evidence.json",
         "title": "Scenario 1: HOLD",
-        "subtitle": "Evidence is missing",
-        "meaning": "The case may be valid, but it is not review-ready.",
+        "subtitle": "Customer statement is missing",
+        "meaning": "A high-value refund case may be valid, but it is not review-ready.",
     },
     {
         "fixture": "allow_review_refund_case.json",
         "title": "Scenario 2: REVIEW",
-        "subtitle": "Ready for a person",
-        "meaning": "The agent can open a human review task. It cannot approve the case.",
+        "subtitle": "Complete packet for review",
+        "meaning": "The agent can open a human review task. It cannot issue the refund.",
     },
     {
         "fixture": "block_policy_bypass.json",
         "title": "Scenario 3: BLOCK",
-        "subtitle": "Policy is bypassed",
-        "meaning": "The agent tries to auto-approve a case that requires review.",
+        "subtitle": "Refund cap is bypassed",
+        "meaning": "The agent tries to issue a refund above the auto-action cap.",
     },
     {
         "fixture": "block_stage_skip.json",
         "title": "Scenario 4: BLOCK",
-        "subtitle": "A Maestro stage was skipped",
-        "meaning": "The case jumped from evidence collection to recommendation.",
+        "subtitle": "Required review milestone skipped",
+        "meaning": "The case reaches recommendation without policy or risk review.",
     },
 ]
 
@@ -158,7 +158,7 @@ def write_dashboard(receipts: list[dict]) -> None:
 <body>
   <header>
     <h1>CaseProof AI</h1>
-    <p class="lead">A small gate for Maestro cases. It asks whether an agent-handled case has enough evidence, policy fit, and stage history to be sent to a person.</p>
+    <p class="lead">A small gate for high-value refund exception cases in Maestro. It asks whether the packet is ready for a person.</p>
   </header>
   <main>
     <div class="grid">
@@ -197,7 +197,7 @@ def write_png(receipts: list[dict]) -> None:
     font_small = font(14)
     draw.rectangle((0, 0, width, 145), fill="#f2f6f9")
     draw.text((42, 32), "CaseProof AI", fill="#18202a", font=font_title)
-    draw.text((42, 92), "A human-review gate for AI-handled UiPath Maestro cases.", fill="#5f6b7a", font=font_body)
+    draw.text((42, 92), "A human-review gate for high-value refund exception cases in UiPath Maestro.", fill="#5f6b7a", font=font_body)
 
     colors = {"HOLD": "#a76800", "BLOCK": "#b3261e", "ALLOW_HUMAN_REVIEW_ONLY": "#1f8a4c"}
     positions = [(42, 185), (620, 185), (42, 455), (620, 455)]
@@ -208,7 +208,13 @@ def write_png(receipts: list[dict]) -> None:
         draw.text((x + 24, y + 50), receipt["subtitle"], fill="#18202a", font=font_h)
         draw.text((x + 24, y + 90), receipt["decision"], fill=colors.get(receipt["decision"], "#1769aa"), font=font_h)
         if receipt["findings"]:
-            line = receipt["findings"][0]["message"]
+            first = receipt["findings"][0]
+            if first["code"] == "required_milestone_missing":
+                line = "Policy check and risk review are missing."
+            elif first["code"] == "required_evidence_missing":
+                line = "Required refund evidence is missing."
+            else:
+                line = first["message"]
         else:
             line = "No blocking findings. Human review remains required."
         draw.text((x + 24, y + 135), line[:62], fill="#5f6b7a", font=font_body)

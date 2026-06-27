@@ -1,9 +1,10 @@
 {
   "blocked_actions": [
     "auto_approve",
-    "settle_case",
-    "change_customer_record",
-    "release_external_payment"
+    "issue_refund",
+    "settle_claim",
+    "update_customer_record",
+    "close_case"
   ],
   "case_id": "CP-DEMO-004",
   "claim_ceiling": "synthetic public-safe Maestro case validation only; not production approval, legal compliance certification, security certification, or field validation",
@@ -11,16 +12,16 @@
   "finding_count": 1,
   "findings": [
     {
-      "code": "stage_order_invalid",
-      "message": "Required Maestro case stages are missing or out of order",
+      "code": "required_milestone_missing",
+      "message": "Required Maestro case milestone is missing: policy_check, risk_review",
       "severity": "block"
     }
   ],
   "fixture": "block_stage_skip.json",
   "maestro_case_url": "synthetic://uipath-maestro/cases/CP-DEMO-004",
-  "meaning": "The case jumped from evidence collection to recommendation.",
+  "meaning": "The case reaches recommendation without policy or risk review.",
   "project": "CaseProof AI",
   "strongest_allowed_action": "open_human_review_task",
-  "subtitle": "A Maestro stage was skipped",
+  "subtitle": "Required review milestone skipped",
   "title": "Scenario 4: BLOCK"
 }

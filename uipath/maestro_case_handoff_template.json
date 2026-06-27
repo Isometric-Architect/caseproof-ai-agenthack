@@ -1,0 +1,37 @@
+{
+  "handoff_version": "caseproof.maestro.handoff.v0.1",
+  "scenario": "high_value_refund_exception",
+  "maestro_case": {
+    "case_url": "synthetic://uipath-maestro/cases/CP-DEMO-001",
+    "process_instance_id": "synthetic-process-instance",
+    "required_milestones": [
+      "intake",
+      "evidence_collection",
+      "policy_check",
+      "risk_review",
+      "decision_recommendation"
+    ]
+  },
+  "agent_work": {
+    "recommendation": "approve_refund",
+    "evidence_refs": [
+      "EV-order",
+      "EV-delivery",
+      "EV-statement",
+      "EV-policy",
+      "EV-rationale"
+    ]
+  },
+  "caseproof_result": {
+    "decision": "ALLOW_HUMAN_REVIEW_ONLY",
+    "allowed_action": "open_human_review_task",
+    "blocked_actions": [
+      "issue_refund",
+      "settle_claim",
+      "update_customer_record",
+      "close_case"
+    ]
+  },
+  "claim_ceiling": "synthetic public-safe handoff template only"
+}
+

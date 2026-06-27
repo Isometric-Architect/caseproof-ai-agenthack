@@ -14,7 +14,7 @@ ALLOW = "ALLOW_HUMAN_REVIEW_ONLY"
 HOLD = "HOLD"
 BLOCK = "BLOCK"
 
-REQUIRED_STAGES = [
+REQUIRED_MILESTONES = [
     "intake",
     "evidence_collection",
     "policy_check",
@@ -56,17 +56,9 @@ def _as_list(value: Any) -> list[Any]:
     return value if isinstance(value, list) else []
 
 
-def _stage_order_valid(stages: list[str]) -> bool:
-    cursor = -1
-    for required in REQUIRED_STAGES:
-        try:
-            idx = stages.index(required)
-        except ValueError:
-            return False
-        if idx <= cursor:
-            return False
-        cursor = idx
-    return True
+def _missing_milestones(milestones: list[str]) -> list[str]:
+    observed = set(milestones)
+    return [required for required in REQUIRED_MILESTONES if required not in observed]
 
 
 def _evidence_index(evidence: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
@@ -109,9 +101,14 @@ def validate_packet(packet: dict[str, Any]) -> dict[str, Any]:
     if str(decision.get("case_id", "")) and decision.get("case_id") != case.get("case_id"):
         ev.add("block", "case_subject_mismatch", "Decision references a different case ID")
 
-    stage_path = [str(stage) for stage in _as_list(maestro.get("case_stage_path"))]
-    if not _stage_order_valid(stage_path):
-        ev.add("block", "stage_order_invalid", "Required Maestro case stages are missing or out of order")
+    milestone_path = [str(stage) for stage in _as_list(maestro.get("case_stage_path"))]
+    missing_milestones = _missing_milestones(milestone_path)
+    if missing_milestones:
+        ev.add(
+            "block",
+            "required_milestone_missing",
+            "Required Maestro case milestone is missing: " + ", ".join(missing_milestones),
+        )
 
     if controls.get("external_action_enabled") is True:
         ev.add("block", "external_action_enabled", "External business action is enabled before human approval")
@@ -166,10 +163,9 @@ def validate_packet(packet: dict[str, Any]) -> dict[str, Any]:
         "case_id": case.get("case_id"),
         "maestro_case_url": maestro.get("case_url"),
         "strongest_allowed_action": "open_human_review_task",
-        "blocked_actions": ["auto_approve", "settle_case", "change_customer_record", "release_external_payment"],
+        "blocked_actions": ["auto_approve", "issue_refund", "settle_claim", "update_customer_record", "close_case"],
         "claim_ceiling": (
             "synthetic public-safe Maestro case validation only; not production approval, "
             "legal compliance certification, security certification, or field validation"
         ),
     }
-
