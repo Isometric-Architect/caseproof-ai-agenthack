@@ -10,11 +10,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT.parent / "CASEPROOF_AI_AGENTHACK_PUBLIC_REPO_PACKAGE_20260627.zip"
 SKIP_DIRS = {".git", "__pycache__", ".pytest_cache", ".venv", "build", "dist"}
+SKIP_FILES = {Path("docs/review_package_receipt.json")}
 
 
 def include(path: Path) -> bool:
     rel = path.relative_to(ROOT)
-    return path.is_file() and not any(part in SKIP_DIRS for part in rel.parts)
+    return path.is_file() and rel not in SKIP_FILES and not any(part in SKIP_DIRS for part in rel.parts)
 
 
 def main() -> int:
@@ -37,4 +38,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
