@@ -54,7 +54,7 @@ https://github.com/Isometric-Architect/caseproof-ai-agenthack
 Demo video:
 
 ```text
-TBD
+https://youtu.be/N25lvoKJjug
 ```
 
 ## Additional info

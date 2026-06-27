@@ -36,6 +36,12 @@ CaseProof AI dashboard showing HOLD, human-review-only, and BLOCK outcomes for h
 C:\Users\Isometric-Architect\Desktop\Q_RESEARC_챗지피티보조\CASEPROOF_AI_AGENTHACK_PUBLIC_REPO\docs\assets\caseproof_demo_rough_cut.mp4
 ```
 
+YouTube:
+
+```text
+https://youtu.be/N25lvoKJjug
+```
+
 ## Deck
 
 ```text
