@@ -1,0 +1,13 @@
+{
+  "claim_ceiling": "public-safe local prototype only",
+  "fixture_results": {
+    "allow_review_refund_case.json": "ALLOW_HUMAN_REVIEW_ONLY",
+    "block_policy_bypass.json": "BLOCK",
+    "block_stage_skip.json": "BLOCK",
+    "hold_missing_evidence.json": "HOLD"
+  },
+  "missing_or_failed": [],
+  "project": "CaseProof AI",
+  "pytest_returncode": 0,
+  "secret_scan_returncode": 0
+}

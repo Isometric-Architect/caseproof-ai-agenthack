@@ -1,0 +1,20 @@
+{
+  "blocked_actions": [
+    "auto_approve",
+    "settle_case",
+    "change_customer_record",
+    "release_external_payment"
+  ],
+  "case_id": "CP-DEMO-001",
+  "claim_ceiling": "synthetic public-safe Maestro case validation only; not production approval, legal compliance certification, security certification, or field validation",
+  "decision": "ALLOW_HUMAN_REVIEW_ONLY",
+  "finding_count": 0,
+  "findings": [],
+  "fixture": "allow_review_refund_case.json",
+  "maestro_case_url": "synthetic://uipath-maestro/cases/CP-DEMO-001",
+  "meaning": "The agent can open a human review task. It cannot approve the case.",
+  "project": "CaseProof AI",
+  "strongest_allowed_action": "open_human_review_task",
+  "subtitle": "Ready for a person",
+  "title": "Scenario 2: REVIEW"
+}

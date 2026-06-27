@@ -1,0 +1,11 @@
+{
+  "claim_ceiling": "synthetic public-safe Maestro case validation only",
+  "decisions": {
+    "allow_review_refund_case.json": "ALLOW_HUMAN_REVIEW_ONLY",
+    "block_policy_bypass.json": "BLOCK",
+    "block_stage_skip.json": "BLOCK",
+    "hold_missing_evidence.json": "HOLD"
+  },
+  "project": "CaseProof AI",
+  "scenario_count": 4
+}

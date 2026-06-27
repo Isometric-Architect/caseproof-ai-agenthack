@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CaseProof AI Demo</title>
+  <style>
+    :root {
+      --ink: #18202a;
+      --muted: #5f6b7a;
+      --line: #d9e1ea;
+      --paper: #f7f9fb;
+      --blue: #1769aa;
+      --green: #1f8a4c;
+      --amber: #a76800;
+      --red: #b3261e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: white;
+    }
+    header {
+      padding: 34px 42px 26px;
+      border-bottom: 1px solid var(--line);
+      background: #f2f6f9;
+    }
+    h1 { margin: 0 0 8px; font-size: 34px; }
+    .lead { max-width: 760px; margin: 0; color: var(--muted); font-size: 17px; line-height: 1.5; }
+    main { padding: 28px 42px 38px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(280px, 1fr));
+      gap: 18px;
+      max-width: 1060px;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--blue);
+      border-radius: 8px;
+      padding: 20px;
+      min-height: 250px;
+      background: white;
+    }
+    .card.hold { border-left-color: var(--amber); }
+    .card.allow { border-left-color: var(--green); }
+    .card.block { border-left-color: var(--red); }
+    .eyebrow { margin: 0 0 8px; color: var(--muted); font-size: 13px; text-transform: uppercase; font-weight: 700; }
+    h2 { margin: 0 0 10px; font-size: 22px; }
+    p { line-height: 1.45; }
+    .decision { margin: 14px 0; font-weight: 700; font-size: 18px; }
+    ul { margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.5; }
+    footer { padding: 0 42px 28px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CaseProof AI</h1>
+    <p class="lead">A small gate for Maestro cases. It asks whether an agent-handled case has enough evidence, policy fit, and stage history to be sent to a person.</p>
+  </header>
+  <main>
+    <div class="grid">
+
+      <section class="card hold">
+        <p class="eyebrow">Scenario 1: HOLD</p>
+        <h2>Evidence is missing</h2>
+        <p>The case may be valid, but it is not review-ready.</p>
+        <div class="decision">HOLD</div>
+        <ul><li><code>required_evidence_missing</code> Required evidence kind is missing: customer_statement</li><li><code>required_evidence_missing</code> Required evidence kind is missing: agent_rationale</li><li><code>rationale_ref_missing</code> Decision rationale ref is not in evidence packet: EV-rationale</li></ul>
+      </section>
+            
+      <section class="card allow">
+        <p class="eyebrow">Scenario 2: REVIEW</p>
+        <h2>Ready for a person</h2>
+        <p>The agent can open a human review task. It cannot approve the case.</p>
+        <div class="decision">ALLOW_HUMAN_REVIEW_ONLY</div>
+        <ul><li>No blocking findings. Human review remains required.</li></ul>
+      </section>
+            
+      <section class="card block">
+        <p class="eyebrow">Scenario 3: BLOCK</p>
+        <h2>Policy is bypassed</h2>
+        <p>The agent tries to auto-approve a case that requires review.</p>
+        <div class="decision">BLOCK</div>
+        <ul><li><code>external_action_enabled</code> External business action is enabled before human approval</li><li><code>amount_requires_human_review</code> Amount exceeds auto-action cap without human review route</li><li><code>human_review_route_missing</code> Policy requires human review for this amount</li><li><code>blocked_override_reason</code> Decision uses a blocked policy override reason</li></ul>
+      </section>
+            
+      <section class="card block">
+        <p class="eyebrow">Scenario 4: BLOCK</p>
+        <h2>A Maestro stage was skipped</h2>
+        <p>The case jumped from evidence collection to recommendation.</p>
+        <div class="decision">BLOCK</div>
+        <ul><li><code>stage_order_invalid</code> Required Maestro case stages are missing or out of order</li></ul>
+      </section>
+            
+    </div>
+  </main>
+  <footer>External business actions stay disabled. The only allowed action is human review.</footer>
+</body>
+</html>

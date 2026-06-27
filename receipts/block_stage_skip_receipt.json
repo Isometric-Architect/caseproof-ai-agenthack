@@ -1,0 +1,26 @@
+{
+  "blocked_actions": [
+    "auto_approve",
+    "settle_case",
+    "change_customer_record",
+    "release_external_payment"
+  ],
+  "case_id": "CP-DEMO-004",
+  "claim_ceiling": "synthetic public-safe Maestro case validation only; not production approval, legal compliance certification, security certification, or field validation",
+  "decision": "BLOCK",
+  "finding_count": 1,
+  "findings": [
+    {
+      "code": "stage_order_invalid",
+      "message": "Required Maestro case stages are missing or out of order",
+      "severity": "block"
+    }
+  ],
+  "fixture": "block_stage_skip.json",
+  "maestro_case_url": "synthetic://uipath-maestro/cases/CP-DEMO-004",
+  "meaning": "The case jumped from evidence collection to recommendation.",
+  "project": "CaseProof AI",
+  "strongest_allowed_action": "open_human_review_task",
+  "subtitle": "A Maestro stage was skipped",
+  "title": "Scenario 4: BLOCK"
+}

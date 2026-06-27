@@ -1,0 +1,85 @@
+{
+  "packet_version": "caseproof.v0.1",
+  "case": {
+    "case_id": "CP-DEMO-003",
+    "case_type": "refund_exception",
+    "region": "APAC",
+    "amount_usd": 4200,
+    "requested_action": "approve_refund",
+    "risk_tier": "high"
+  },
+  "maestro": {
+    "orchestration_layer": "UiPath Maestro",
+    "case_url": "synthetic://uipath-maestro/cases/CP-DEMO-003",
+    "process_model": "caseproof_maestro_case_governor_v0.1",
+    "case_stage_path": [
+      "intake",
+      "evidence_collection",
+      "policy_check",
+      "risk_review",
+      "decision_recommendation"
+    ]
+  },
+  "evidence": [
+    {
+      "id": "EV-order",
+      "kind": "order_record",
+      "digest": "sha256:synthetic-order-record",
+      "present": true,
+      "redacted": true
+    },
+    {
+      "id": "EV-statement",
+      "kind": "customer_statement",
+      "digest": "sha256:synthetic-customer-statement",
+      "present": true,
+      "redacted": true
+    },
+    {
+      "id": "EV-policy",
+      "kind": "policy_snapshot",
+      "digest": "sha256:synthetic-policy-snapshot",
+      "present": true,
+      "redacted": true
+    },
+    {
+      "id": "EV-rationale",
+      "kind": "agent_rationale",
+      "digest": "sha256:synthetic-agent-rationale",
+      "present": true,
+      "redacted": true
+    }
+  ],
+  "policy": {
+    "policy_id": "REFUND-EXCEPTION-PUBLIC-DEMO",
+    "version": "2026.06",
+    "decision_caps": {
+      "auto_approve_max_usd": 500,
+      "human_review_min_usd": 500
+    },
+    "required_evidence_by_action": {
+      "approve_refund": [
+        "order_record",
+        "customer_statement",
+        "policy_snapshot",
+        "agent_rationale"
+      ]
+    },
+    "blocked_reasons": ["policy_override_without_approval"]
+  },
+  "decision": {
+    "case_id": "CP-DEMO-003",
+    "agent_recommendation": "approve_refund",
+    "amount_usd": 4200,
+    "confidence": 0.94,
+    "rationale_refs": ["EV-rationale"],
+    "approval_route": "auto_approve",
+    "override_reason": "policy_override_without_approval"
+  },
+  "controls": {
+    "human_review_required": true,
+    "external_action_enabled": true,
+    "pii_redacted": true
+  }
+}
+

@@ -1,0 +1,10 @@
+__pycache__/
+.pytest_cache/
+pytest-cache-files-*/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+dist/
+build/
+docs/assets/video_rough_cut/*.tmp

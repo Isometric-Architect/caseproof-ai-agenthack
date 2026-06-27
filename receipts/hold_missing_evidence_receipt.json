@@ -1,0 +1,36 @@
+{
+  "blocked_actions": [
+    "auto_approve",
+    "settle_case",
+    "change_customer_record",
+    "release_external_payment"
+  ],
+  "case_id": "CP-DEMO-002",
+  "claim_ceiling": "synthetic public-safe Maestro case validation only; not production approval, legal compliance certification, security certification, or field validation",
+  "decision": "HOLD",
+  "finding_count": 3,
+  "findings": [
+    {
+      "code": "required_evidence_missing",
+      "message": "Required evidence kind is missing: customer_statement",
+      "severity": "hold"
+    },
+    {
+      "code": "required_evidence_missing",
+      "message": "Required evidence kind is missing: agent_rationale",
+      "severity": "hold"
+    },
+    {
+      "code": "rationale_ref_missing",
+      "message": "Decision rationale ref is not in evidence packet: EV-rationale",
+      "severity": "hold"
+    }
+  ],
+  "fixture": "hold_missing_evidence.json",
+  "maestro_case_url": "synthetic://uipath-maestro/cases/CP-DEMO-002",
+  "meaning": "The case may be valid, but it is not review-ready.",
+  "project": "CaseProof AI",
+  "strongest_allowed_action": "open_human_review_task",
+  "subtitle": "Evidence is missing",
+  "title": "Scenario 1: HOLD"
+}
